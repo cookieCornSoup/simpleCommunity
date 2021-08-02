@@ -5,9 +5,12 @@ import android.os.Bundle
 import com.example.myapplication.R
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_MyApplication)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
     }
 }

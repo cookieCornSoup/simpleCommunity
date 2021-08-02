@@ -1,6 +1,6 @@
 package com.example.myapplication.model
 
-data class MemoData(
+data class PostData(
     val memoTitle: String
 
 )

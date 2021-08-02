@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <string name="title">제목</string>
+    <string name="writing">글쓰기</string>
+    <string name="scrap">스크랩</string>
+    <string name="notice_board">게시판</string>
+    <string name="content">내용</string>
+
+    <string name="id">아이디</string>
+    <string name="password">비밀번호</string>
+    <string name="sign_in">로그인</string>
+    <string name="sign_up">회원가입</string>
+    <string name="auto_sign_in">자동로그인</string>
+    <string name="nike_name">닉네임</string>
+    <string name="certified_num">인증번호</string>
+    <string name="certified_done">인증완료</string>
 </resources>

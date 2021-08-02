@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/scrap"
+        android:contentDescription="@string/scrap"
+        android:icon="@drawable/baseline_turned_in_24"
+        android:title="@string/scrap"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/writing"
+        android:contentDescription="@string/writing"
+        android:icon="@drawable/baseline_article_24"
+        android:title="@string/writing"
+        app:showAsAction="ifRoom" />
+
+
+</menu>
