@@ -21,7 +21,7 @@ class SigninActivity : BaseActivity<ActivitySigninBinding>({ ActivitySigninBindi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        System.out.println("로그인 페이지 완료")
         SharedPref.openSharedPrep(this@SigninActivity)
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         val editor = pref.edit()
@@ -81,7 +81,12 @@ class SigninActivity : BaseActivity<ActivitySigninBinding>({ ActivitySigninBindi
                             this@SigninActivity,
                             "잘못된 인증자격(리프레시 토큰으로 바꾸기)",
                             Toast.LENGTH_LONG
-                        )
+                        ).show()
+                        403 -> Toast.makeText(
+                            this@SigninActivity,
+                            "403 forbidden",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
 

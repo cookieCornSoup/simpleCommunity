@@ -18,7 +18,7 @@ class EmailCheckActivity : BaseActivity<ActivitySigninBinding>({ ActivitySigninB
             Toast.LENGTH_LONG
         ).show()
 
-        binding.
+
     }
 
 }

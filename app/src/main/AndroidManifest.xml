@@ -29,6 +29,8 @@
         <activity android:name=".feature.singup.BaseActivity"
             tools:ignore="Instantiatable" />
         <activity android:name=".feature.singup.SigninActivity"/>
+        <activity android:name=".feature.PostWriting"/>
+        <activity android:name=".feature.singup.EmailCheckActivity"/>
 
     </application>
 

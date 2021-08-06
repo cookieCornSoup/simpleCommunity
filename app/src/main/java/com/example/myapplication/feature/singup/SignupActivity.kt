@@ -20,11 +20,6 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>({ ActivitySignupBindi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        SharedPref.openSharedPrep(this@SignupActivity)
-        val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
-        val editor = pref.edit()
-
-
         binding.signUpBtn.setOnClickListener {
             Client.retrofitService.signUp(
                 binding.signUpIdEditText.toString(),

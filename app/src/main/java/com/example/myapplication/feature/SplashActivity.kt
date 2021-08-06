@@ -7,13 +7,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.feature.singup.EmailCheckActivity
 import com.example.myapplication.feature.singup.SigninActivity
-import com.example.myapplication.model.SigninCheckOkResponse
 import com.example.myapplication.model.UsersRetrieveResponse
 import com.example.myapplication.repository.SharedPref
 import com.example.myapplication.retrofit.Client
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 class SplashActivity : AppCompatActivity() {
 
@@ -48,9 +46,15 @@ class SplashActivity : AppCompatActivity() {
                                 startActivity(intent)
                                 finish()
                             }
-
                         }
+                        400 -> Toast.makeText(
+                            this@SplashActivity,
+                            "잘못된 요청입니다.",
+                            Toast.LENGTH_LONG
+                        )
                         401 -> {
+                            //토큰 만료.
+
                             Toast.makeText(
                                 this@SplashActivity,
                                 "로그인 실패 : 서버 오류",
@@ -62,25 +66,37 @@ class SplashActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         }
+                        403 -> Toast.makeText(
+                            this@SplashActivity,
+                            "잘못된 인증입니다.",
+                            Toast.LENGTH_LONG
+                        )
+                        404 -> Toast.makeText(
+                            this@SplashActivity,
+                            "잘못된 리소스 요청입니다.",
+                            Toast.LENGTH_LONG
+                        )
+                        405 -> Toast.makeText(
+                            this@SplashActivity,
+                            "Method Not Allowed",
+                            Toast.LENGTH_LONG
+                        )
                         500 -> Toast.makeText(
                             this@SplashActivity,
                             "로그인 실패 : 서버 오류",
                             Toast.LENGTH_LONG
                         ).show()
-                        401 -> Toast.makeText(
-                            this@SplashActivity,
-                            "잘못된 인증자격(리프레시 토큰으로 바꾸기)",
-                            Toast.LENGTH_LONG
-                        )
+
                     }
                 }
+
                 override fun onFailure(call: Call<UsersRetrieveResponse>?, t: Throwable?) {
                 }
             })
+        } else {
+            //자동로그인이 꺼져있을때
+            startActivity(Intent(this@SplashActivity, SigninActivity::class.java))
+            finish()
         }
-        //자동로그인이 꺼져있을때
-        Intent(this@SplashActivity, SigninActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 }
