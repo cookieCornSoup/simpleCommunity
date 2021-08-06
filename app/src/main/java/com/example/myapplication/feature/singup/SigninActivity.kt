@@ -21,7 +21,7 @@ class SigninActivity : BaseActivity<ActivitySigninBinding>({ ActivitySigninBindi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        System.out.println("로그인 페이지 완료")
+
         SharedPref.openSharedPrep(this@SigninActivity)
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         val editor = pref.edit()
@@ -62,7 +62,10 @@ class SigninActivity : BaseActivity<ActivitySigninBinding>({ ActivitySigninBindi
                                 "refresh_token",
                                 response.body()?.refresh_token
                             )
-
+                            editor.putString(
+                                "email",
+                                binding.signInIdEditText.text.toString()
+                            )
                             editor.apply()
                             finish()
                             startActivity(Intent(this@SigninActivity, MainActivity::class.java))

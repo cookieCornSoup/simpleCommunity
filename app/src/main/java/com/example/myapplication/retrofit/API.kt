@@ -29,8 +29,8 @@ interface API {
 
 
     @GET("/users/{email}")
-    @FormUrlEncoded
     fun usersRetrieve(
+        @Header("Authorization") auth: String,
         @Path("email") email: String) : Call<UsersRetrieveResponse>
 
 }

@@ -17,7 +17,7 @@ class PostWriting : BaseActivity<ActivityWritingBinding>({ ActivityWritingBindin
 
         binding.editor.setEditorHeight(200)
         binding.editor.setEditorFontSize(22)
-        binding.editor.setEditorFontColor(Color.RED)
+        binding.editor.setEditorFontColor(Color.BLACK)
 
         binding.editor.setPadding(10, 10, 10, 10)
         binding.editor.setPlaceholder("내용을 적어주세요.")

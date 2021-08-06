@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import android.util.Log
 
 object SharedPref {
-    val LOGIN_SESSION = "login.session"
+    val LOGIN_SESSION = "com.android.signin"
 
     private var sharedPref: SharedPreferences? = null
 

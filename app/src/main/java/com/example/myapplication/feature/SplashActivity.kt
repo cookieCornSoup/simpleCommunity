@@ -11,6 +11,7 @@ import com.example.myapplication.model.UsersRetrieveResponse
 import com.example.myapplication.repository.SharedPref
 import com.example.myapplication.retrofit.Client
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class SplashActivity : AppCompatActivity() {
@@ -23,27 +24,32 @@ class SplashActivity : AppCompatActivity() {
         SharedPref.openSharedPrep(this)
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
 
-        if (SharedPref.readAutoSigninSession() == true) {
-
+        if (SharedPref.readAutoSigninSession() == true && SharedPref.readAccessSession() != null) {
             Client.retrofitService.usersRetrieve(
+                "Bearer " + SharedPref.readAccessSession().toString(),
                 SharedPref.readUserEmail().toString()
-            ).enqueue(object : retrofit2.Callback<UsersRetrieveResponse> {
+            ).enqueue(object : Callback<UsersRetrieveResponse> {
                 @SuppressLint("ShowToast")
                 override fun onResponse(
                     call: Call<UsersRetrieveResponse>?,
-                    response: Response<UsersRetrieveResponse>?
+                    response: Response<UsersRetrieveResponse>?,
                 ) {
                     when (response!!.code()) {
                         200 -> {
                             //회원가입만 시도 후 이탈시 이메일 처리 필요.
-                            if (response.body()?.isVerified == false) {
-                                val intent =
-                                    Intent(this@SplashActivity, EmailCheckActivity::class.java)
-                                startActivity(intent)
+                            val userinfo = response.body()
+                            System.out.println(userinfo?.is_verified)
+
+                            if (response.body()?.is_verified == false) {
+                                startActivity(
+                                    Intent(
+                                        this@SplashActivity,
+                                        EmailCheckActivity::class.java
+                                    )
+                                )
                                 finish()
                             } else {
-                                Intent(this@SplashActivity, MainActivity::class.java)
-                                startActivity(intent)
+                                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                                 finish()
                             }
                         }
@@ -54,16 +60,13 @@ class SplashActivity : AppCompatActivity() {
                         )
                         401 -> {
                             //토큰 만료.
-
                             Toast.makeText(
                                 this@SplashActivity,
-                                "로그인 실패 : 서버 오류",
+                                "로그인 실패 재로그인 부탁드립니다.",
                                 Toast.LENGTH_LONG
                             ).show()
 
-                            val intent =
-                                Intent(this@SplashActivity, SigninActivity::class.java)
-                            startActivity(intent)
+                            startActivity(Intent(this@SplashActivity, SigninActivity::class.java))
                             finish()
                         }
                         403 -> Toast.makeText(
@@ -88,7 +91,9 @@ class SplashActivity : AppCompatActivity() {
                         ).show()
 
                     }
+
                 }
+
 
                 override fun onFailure(call: Call<UsersRetrieveResponse>?, t: Throwable?) {
                 }

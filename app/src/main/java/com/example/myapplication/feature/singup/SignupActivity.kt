@@ -17,8 +17,13 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>({ ActivitySignupBindi
 
     val PREFERENCE = "com.android.signin"
 
+    @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        SharedPref.openSharedPrep(this@SignupActivity)
+        val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
+        val editor = pref.edit()
 
         binding.signUpBtn.setOnClickListener {
             Client.retrofitService.signUp(
@@ -33,6 +38,10 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>({ ActivitySignupBindi
                 ) {
                     when (response!!.code()) {
                         200 -> {
+                            editor.putString(
+                                "email",
+                                response.body()?.email
+                            )
                             val intent = Intent(this@SignupActivity, EmailCheckActivity::class.java)
                             intent.putExtra("email",response.body()?.email.toString())
                             startActivity(intent)

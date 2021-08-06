@@ -17,8 +17,7 @@
             android:layout_margin="3dp"
             android:hint="@string/title"
             android:inputType="none"
-            tools:ignore="LabelFor,TextFields"
-            />
+            tools:ignore="LabelFor,TextFields" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -257,12 +256,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="HTML Preview"
-            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/preview"
@@ -270,7 +263,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp" />
 
+
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/writing_done_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/writing"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
