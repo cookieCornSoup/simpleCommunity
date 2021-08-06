@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.myapplication">
+    package="com.example.simplecommunity">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,7 +15,7 @@
         android:theme="@style/Theme.MyApplication">
 
 
-        <activity android:name=".feature.SplashActivity"
+        <activity android:name="com.example.simplecommunity.feature.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,13 +24,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".feature.singup.SignupActivity" />
-        <activity android:name=".feature.MainActivity" />
-        <activity android:name=".feature.singup.BaseActivity"
+        <activity android:name="com.example.simplecommunity.feature.singup.SignupActivity" />
+        <activity android:name="com.example.simplecommunity.feature.MainActivity" />
+        <activity android:name="com.example.simplecommunity.feature.singup.BaseActivity"
             tools:ignore="Instantiatable" />
-        <activity android:name=".feature.singup.SigninActivity"/>
-        <activity android:name=".feature.PostWriting"/>
-        <activity android:name=".feature.singup.EmailCheckActivity"/>
+        <activity android:name="com.example.simplecommunity.feature.singup.SigninActivity"/>
+        <activity android:name="com.example.simplecommunity.feature.PostWriting"/>
+        <activity android:name="com.example.simplecommunity.feature.singup.EmailCheckActivity"/>
 
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.myapplication.feature.singup
+package com.example.simplecommunity.feature.singup
 
 import android.os.Bundle
 import android.view.LayoutInflater

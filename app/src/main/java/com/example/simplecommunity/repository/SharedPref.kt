@@ -1,4 +1,4 @@
-package com.example.myapplication.repository
+package com.example.simplecommunity.repository
 
 import android.content.Context
 import android.content.SharedPreferences

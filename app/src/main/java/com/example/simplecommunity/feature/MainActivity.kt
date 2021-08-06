@@ -1,11 +1,10 @@
-package com.example.myapplication.feature
+package com.example.simplecommunity.feature
 
 import android.content.Intent
 import android.os.Bundle
-import com.example.myapplication.R
-import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.feature.singup.BaseActivity
-import com.example.myapplication.feature.singup.EmailCheckActivity
+import com.example.simplecommunity.R
+import com.example.simplecommunity.databinding.ActivityMainBinding
+import com.example.simplecommunity.feature.singup.BaseActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>({ ActivityMainBinding.inflate(it) }) {
 

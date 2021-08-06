@@ -1,15 +1,15 @@
-package com.example.myapplication.feature
+package com.example.simplecommunity.feature
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.feature.singup.EmailCheckActivity
-import com.example.myapplication.feature.singup.SigninActivity
-import com.example.myapplication.model.UsersRetrieveResponse
-import com.example.myapplication.repository.SharedPref
-import com.example.myapplication.retrofit.Client
+import com.example.simplecommunity.feature.singup.EmailCheckActivity
+import com.example.simplecommunity.feature.singup.SigninActivity
+import com.example.simplecommunity.model.UsersRetrieveResponse
+import com.example.simplecommunity.repository.SharedPref
+import com.example.simplecommunity.retrofit.Client
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

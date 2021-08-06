@@ -1,9 +1,8 @@
-package com.example.myapplication.feature.singup
+package com.example.simplecommunity.feature.singup
 
 import android.os.Bundle
 import android.widget.Toast
-import com.example.myapplication.databinding.ActivityEmailCheckBinding
-import com.example.myapplication.databinding.ActivitySigninBinding
+import com.example.simplecommunity.databinding.ActivityEmailCheckBinding
 
 class EmailCheckActivity : BaseActivity<ActivityEmailCheckBinding>({ ActivityEmailCheckBinding.inflate(it) }){
 

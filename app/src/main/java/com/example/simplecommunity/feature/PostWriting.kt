@@ -1,10 +1,10 @@
-package com.example.myapplication.feature
+package com.example.simplecommunity.feature
 
 
 import android.graphics.Color
 import android.os.Bundle
-import com.example.myapplication.databinding.ActivityWritingBinding
-import com.example.myapplication.feature.singup.BaseActivity
+import com.example.simplecommunity.databinding.ActivityWritingBinding
+import com.example.simplecommunity.feature.singup.BaseActivity
 import jp.wasabeef.richeditor.RichEditor.OnTextChangeListener
 
 

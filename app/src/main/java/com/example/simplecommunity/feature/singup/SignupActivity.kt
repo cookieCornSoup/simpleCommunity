@@ -1,14 +1,13 @@
-package com.example.myapplication.feature.singup
+package com.example.simplecommunity.feature.singup
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import com.example.myapplication.databinding.ActivitySignupBinding
-import com.example.myapplication.feature.MainActivity
-import com.example.myapplication.model.UsersActivateResponse
-import com.example.myapplication.repository.SharedPref
-import com.example.myapplication.retrofit.Client
+import com.example.simplecommunity.databinding.ActivitySignupBinding
+import com.example.simplecommunity.model.UsersActivateResponse
+import com.example.simplecommunity.repository.SharedPref
+import com.example.simplecommunity.retrofit.Client
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

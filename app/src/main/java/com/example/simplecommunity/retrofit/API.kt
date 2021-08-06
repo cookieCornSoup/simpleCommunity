@@ -1,8 +1,8 @@
-package com.example.myapplication.retrofit
+package com.example.simplecommunity.retrofit
 
-import com.example.myapplication.model.SigninCheckOkResponse
-import com.example.myapplication.model.UsersActivateResponse
-import com.example.myapplication.model.UsersRetrieveResponse
+import com.example.simplecommunity.model.SigninCheckOkResponse
+import com.example.simplecommunity.model.UsersActivateResponse
+import com.example.simplecommunity.model.UsersRetrieveResponse
 import retrofit2.Call
 import retrofit2.http.*
 
