@@ -1,14 +1,18 @@
 package com.example.simplecommunity.feature
 
 
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import com.example.simplecommunity.databinding.ActivityWritingBinding
 import com.example.simplecommunity.feature.signup.BaseActivity
 import jp.wasabeef.richeditor.RichEditor.OnTextChangeListener
 
+var imageUri: String = ""
 
 class PostWriting : BaseActivity<ActivityWritingBinding>({ ActivityWritingBinding.inflate(it)}){
+    val PICK_IMAGE = 1111
 
     //https://github.com/wasabeef/richeditor-android/blob/master/sample/src/main/java/jp/wasabeef/sample/MainActivity.java
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,7 +81,12 @@ class PostWriting : BaseActivity<ActivityWritingBinding>({ ActivityWritingBindin
         binding.actionInsertNumbers.setOnClickListener{binding.editor.setNumbers()}
 
         //이미지 삽입
-        //binding.actionInsertImage.setOnClickListener{binding.editor.insertImage()}
+        binding.actionInsertImage.setOnClickListener{
+
+            loadImage()
+
+            binding.editor.insertImage(imageUri,"image")
+        }
 
         //유튜브 삽입
         //binding.actionInsertYoutube.setOnClickListener{binding.editor.insertYoutubeVideo("")}
@@ -87,5 +96,70 @@ class PostWriting : BaseActivity<ActivityWritingBinding>({ ActivityWritingBindin
 //            binding.editor.insertLink("https://github.com/wasabeef", "wasabeef")
 //        }
 
+//        binding.writingDoneBtn.setOnClickListener {
+//            Client.retrofitService.signUp(
+//                binding.signUpIdEditText.toString(),
+//                binding.signUpNikenameEditText.toString(),
+//                binding.signUpPasswordEditText.toString()
+//            ).enqueue(object : Callback<UsersActivateResponse> {
+//                @SuppressLint("ShowToast")
+//                override fun onResponse(
+//                    call: Call<UsersActivateResponse>?,
+//                    response: Response<UsersActivateResponse>?
+//                ) {
+//                    when (response!!.code()) {
+//                        200 -> {
+//                            editor.putString(
+//                                "email",
+//                                response.body()?.email
+//                            )
+//                            val intent = Intent(this@SignupActivity, EmailCheckActivity::class.java)
+//                            intent.putExtra("email",response.body()?.email.toString())
+//                            startActivity(intent)
+//                        }
+//                        405 -> Toast.makeText(
+//                            this@SignupActivity,
+//                            "로그인 실패 : 아이디나 비번이 올바르지 않습니다",
+//                            Toast.LENGTH_LONG
+//                        ).show()
+//                        500 -> Toast.makeText(
+//                            this@SignupActivity,
+//                            "로그인 실패 : 서버 오류",
+//                            Toast.LENGTH_LONG
+//                        ).show()
+//                        401 -> Toast.makeText(
+//                            this@SignupActivity,
+//                            "잘못된 인증자격(리프레시 토큰으로 바꾸기)",
+//                            Toast.LENGTH_LONG
+//                        )
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<UsersActivateResponse>, t: Throwable) {
+//
+//                }
+//            })
+//
+//        }
+    }
+
+    fun loadImage() {
+
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        val mimeTypes = arrayOf("image/jpeg", "image/png")
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
+        startActivityForResult(intent, PICK_IMAGE)
+
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
+            if (data == null) {
+                return
+            }
+            val selectedImage: Uri? = data.data
+            imageUri = selectedImage.toString()
+        }
     }
 }

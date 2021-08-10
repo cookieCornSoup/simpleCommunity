@@ -1,5 +1,6 @@
 package com.example.simplecommunity.retrofit
 
+import com.example.simplecommunity.model.FeedsCreateResponse
 import com.example.simplecommunity.model.SigninCheckOkResponse
 import com.example.simplecommunity.model.UsersActivateResponse
 import com.example.simplecommunity.model.UsersRetrieveResponse
@@ -21,16 +22,27 @@ interface API {
         @Field("email") email: String,
         @Field("password") password : String) : Call<SigninCheckOkResponse>
 
-    @POST("users/{email}/activate")
+    @POST("/users/{email}/activate")
     @FormUrlEncoded
     fun usersActivate(
         @Path("email") email: String,
         @Field("verifying_number") verifyingNum: String) : Call<Void>
 
 
+
     @GET("/users/{email}")
     fun usersRetrieve(
         @Header("Authorization") auth: String,
         @Path("email") email: String) : Call<UsersRetrieveResponse>
+
+    @POST("feeds")
+    @FormUrlEncoded
+    fun feedsCreate(
+        @Field("title") title: String,
+        @Field("thumbnail") thumbnail : String,
+        @Field("contents") contents: String,
+        @Field("is_show") is_show : Boolean) : Call<FeedsCreateResponse>
+
+
 
 }
