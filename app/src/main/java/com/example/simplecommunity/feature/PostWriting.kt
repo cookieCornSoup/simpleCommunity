@@ -4,7 +4,7 @@ package com.example.simplecommunity.feature
 import android.graphics.Color
 import android.os.Bundle
 import com.example.simplecommunity.databinding.ActivityWritingBinding
-import com.example.simplecommunity.feature.singup.BaseActivity
+import com.example.simplecommunity.feature.signup.BaseActivity
 import jp.wasabeef.richeditor.RichEditor.OnTextChangeListener
 
 

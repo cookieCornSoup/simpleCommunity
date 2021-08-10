@@ -1,4 +1,4 @@
-package com.example.simplecommunity.feature.singup
+package com.example.simplecommunity.feature.signup
 
 import android.annotation.SuppressLint
 import android.content.Intent

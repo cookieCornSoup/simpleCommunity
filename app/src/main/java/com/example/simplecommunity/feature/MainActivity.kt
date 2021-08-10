@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.example.simplecommunity.R
 import com.example.simplecommunity.databinding.ActivityMainBinding
-import com.example.simplecommunity.feature.singup.BaseActivity
+import com.example.simplecommunity.feature.signup.BaseActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>({ ActivityMainBinding.inflate(it) }) {
 
