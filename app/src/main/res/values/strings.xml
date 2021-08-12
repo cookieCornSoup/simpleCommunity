@@ -8,7 +8,10 @@
     <string name="notice_board">게시판</string>
     <string name="content">내용</string>
 
+    <string name="thumbnail_browse">썸네일 찾아보기</string>
+
     <string name="id">아이디</string>
+    <string name="email">이메일</string>
     <string name="password">비밀번호</string>
     <string name="sign_in">로그인</string>
     <string name="sign_up">회원가입</string>
@@ -19,4 +22,8 @@
 
     <string name="content_description_imageview">이미지</string>
 
+    <string name="private_all">비공개</string>
+    <string name="public_all">공개</string>
+    <string name="friends_public">친구만공개</string>
+    <string name="open_range">공개범위</string>
 </resources>

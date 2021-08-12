@@ -1,11 +1,9 @@
 package com.example.simplecommunity.retrofit
 
-import com.example.simplecommunity.model.FeedsCreateResponse
-import com.example.simplecommunity.model.SigninCheckOkResponse
-import com.example.simplecommunity.model.UsersActivateResponse
-import com.example.simplecommunity.model.UsersRetrieveResponse
+import com.example.simplecommunity.model.*
 import retrofit2.Call
 import retrofit2.http.*
+import java.net.URI
 
 interface API {
 
@@ -35,14 +33,19 @@ interface API {
         @Header("Authorization") auth: String,
         @Path("email") email: String) : Call<UsersRetrieveResponse>
 
-    @POST("feeds")
+    @POST("/feeds")
     @FormUrlEncoded
     fun feedsCreate(
         @Field("title") title: String,
         @Field("thumbnail") thumbnail : String,
         @Field("contents") contents: String,
-        @Field("is_show") is_show : Boolean) : Call<FeedsCreateResponse>
+        @Field("access_permission") is_show : Boolean) : Call<FeedsCreateResponse>
 
-
+    @POST("/images")
+    @FormUrlEncoded
+    fun imagesCreate(
+        @Field("image") image: URI,
+        @Field("path") path : String,
+        @Field("name") name: String) : Call<ImagesCreateResponse>
 
 }

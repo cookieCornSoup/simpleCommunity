@@ -8,8 +8,11 @@ import android.os.Bundle
 import com.example.simplecommunity.databinding.ActivityWritingBinding
 import com.example.simplecommunity.feature.signup.BaseActivity
 import jp.wasabeef.richeditor.RichEditor.OnTextChangeListener
+import retrofit2.Response
 
-var imageUri: String = ""
+lateinit var imageUri: Uri
+lateinit var thumbnailUri: Uri
+var thumbnaiTrigger = false
 
 class PostWriting : BaseActivity<ActivityWritingBinding>({ ActivityWritingBinding.inflate(it)}){
     val PICK_IMAGE = 1111
@@ -17,7 +20,6 @@ class PostWriting : BaseActivity<ActivityWritingBinding>({ ActivityWritingBindin
     //https://github.com/wasabeef/richeditor-android/blob/master/sample/src/main/java/jp/wasabeef/sample/MainActivity.java
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         binding.editor.setEditorHeight(200)
         binding.editor.setEditorFontSize(22)
@@ -82,10 +84,11 @@ class PostWriting : BaseActivity<ActivityWritingBinding>({ ActivityWritingBindin
 
         //이미지 삽입
         binding.actionInsertImage.setOnClickListener{
-
+            thumbnaiTrigger = false
             loadImage()
 
-            binding.editor.insertImage(imageUri,"image")
+
+
         }
 
         //유튜브 삽입
@@ -96,46 +99,46 @@ class PostWriting : BaseActivity<ActivityWritingBinding>({ ActivityWritingBindin
 //            binding.editor.insertLink("https://github.com/wasabeef", "wasabeef")
 //        }
 
+        binding.thumbnailBtn.setOnClickListener{
+            thumbnaiTrigger = true
+            loadImage()
+
+
+        }
 //        binding.writingDoneBtn.setOnClickListener {
-//            Client.retrofitService.signUp(
-//                binding.signUpIdEditText.toString(),
-//                binding.signUpNikenameEditText.toString(),
-//                binding.signUpPasswordEditText.toString()
-//            ).enqueue(object : Callback<UsersActivateResponse> {
+//            Client.retrofitService.feedsCreate(
+//                binding.titleEdittext.toString(),
+//                thumbnailUri,
+
+//            ).enqueue(object : Callback<FeedsCreateResponse> {
 //                @SuppressLint("ShowToast")
 //                override fun onResponse(
-//                    call: Call<UsersActivateResponse>?,
-//                    response: Response<UsersActivateResponse>?
+//                    call: Call<FeedsCreateResponse>?,
+//                    response: Response<FeedsCreateResponse>?
 //                ) {
 //                    when (response!!.code()) {
 //                        200 -> {
-//                            editor.putString(
-//                                "email",
-//                                response.body()?.email
-//                            )
-//                            val intent = Intent(this@SignupActivity, EmailCheckActivity::class.java)
-//                            intent.putExtra("email",response.body()?.email.toString())
-//                            startActivity(intent)
+//
 //                        }
 //                        405 -> Toast.makeText(
-//                            this@SignupActivity,
+//                            this@PostWriting,
 //                            "로그인 실패 : 아이디나 비번이 올바르지 않습니다",
 //                            Toast.LENGTH_LONG
 //                        ).show()
 //                        500 -> Toast.makeText(
-//                            this@SignupActivity,
+//                            this@PostWriting,
 //                            "로그인 실패 : 서버 오류",
 //                            Toast.LENGTH_LONG
 //                        ).show()
 //                        401 -> Toast.makeText(
-//                            this@SignupActivity,
+//                            this@PostWriting,
 //                            "잘못된 인증자격(리프레시 토큰으로 바꾸기)",
 //                            Toast.LENGTH_LONG
 //                        )
 //                    }
 //                }
 //
-//                override fun onFailure(call: Call<UsersActivateResponse>, t: Throwable) {
+//                override fun onFailure(call: Call<FeedsCreateResponse>, t: Throwable) {
 //
 //                }
 //            })
@@ -159,7 +162,14 @@ class PostWriting : BaseActivity<ActivityWritingBinding>({ ActivityWritingBindin
                 return
             }
             val selectedImage: Uri? = data.data
-            imageUri = selectedImage.toString()
+            if (thumbnaiTrigger == true) {
+                thumbnailUri = selectedImage!!
+                binding.thumbnailImageview.setImageURI(thumbnailUri)
+            }else{
+                val imageString = selectedImage.toString()
+                imageUri = selectedImage!!
+                binding.editor.insertImage(imageString,"image")
+            }
         }
     }
 }
