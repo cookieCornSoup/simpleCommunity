@@ -29,7 +29,7 @@
 
         <activity android:name="com.example.simplecommunity.feature.signup.SignupActivity" />
         <activity android:name="com.example.simplecommunity.feature.MainActivity" />
-        <activity android:name="com.example.simplecommunity.feature.signup.BaseActivity"
+        <activity android:name="com.example.simplecommunity.base.BaseActivity"
             tools:ignore="Instantiatable" />
         <activity android:name="com.example.simplecommunity.feature.signup.SigninActivity"/>
         <activity android:name="com.example.simplecommunity.feature.PostWriting"/>

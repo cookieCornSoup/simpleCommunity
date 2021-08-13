@@ -2,6 +2,7 @@ package com.example.simplecommunity.feature.signup
 
 import android.os.Bundle
 import android.widget.Toast
+import com.example.simplecommunity.base.BaseActivity
 import com.example.simplecommunity.databinding.ActivityEmailCheckBinding
 
 class EmailCheckActivity : BaseActivity<ActivityEmailCheckBinding>({ ActivityEmailCheckBinding.inflate(it) }){

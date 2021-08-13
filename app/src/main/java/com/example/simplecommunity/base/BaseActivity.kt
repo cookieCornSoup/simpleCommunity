@@ -1,4 +1,4 @@
-package com.example.simplecommunity.feature.signup
+package com.example.simplecommunity.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

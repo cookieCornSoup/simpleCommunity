@@ -6,9 +6,8 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import com.example.simplecommunity.databinding.ActivityWritingBinding
-import com.example.simplecommunity.feature.signup.BaseActivity
+import com.example.simplecommunity.base.BaseActivity
 import jp.wasabeef.richeditor.RichEditor.OnTextChangeListener
-import retrofit2.Response
 
 lateinit var imageUri: Uri
 lateinit var thumbnailUri: Uri

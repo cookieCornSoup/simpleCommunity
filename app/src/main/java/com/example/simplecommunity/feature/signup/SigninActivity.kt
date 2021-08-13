@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import com.example.simplecommunity.base.BaseActivity
 
 import com.example.simplecommunity.databinding.ActivitySigninBinding
 import com.example.simplecommunity.feature.MainActivity
