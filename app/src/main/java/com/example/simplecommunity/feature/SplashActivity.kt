@@ -16,13 +16,10 @@ import retrofit2.Response
 
 class SplashActivity : AppCompatActivity() {
 
-    val PREFERENCE = "com.android.signin"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        SharedPref.openSharedPrep(this)
-        val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
+        SharedPref.init(this)
 
         if (SharedPref.readAutoSigninSession() == true && SharedPref.readAccessSession() != null) {
             Client.retrofitService.usersRetrieve(

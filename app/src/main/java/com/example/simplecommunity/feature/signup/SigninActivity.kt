@@ -9,8 +9,10 @@ import com.example.simplecommunity.base.BaseActivity
 import com.example.simplecommunity.databinding.ActivitySigninBinding
 import com.example.simplecommunity.feature.MainActivity
 import com.example.simplecommunity.model.SigninCheckOkResponse
+import com.example.simplecommunity.model.SigninDTO
 import com.example.simplecommunity.repository.SharedPref
 import com.example.simplecommunity.retrofit.Client
+import com.example.simplecommunity.signin.viewmodel.SigninViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,32 +20,32 @@ import retrofit2.Response
 
 class SigninActivity : BaseActivity<ActivitySigninBinding>({ ActivitySigninBinding.inflate(it) }) {
 
-    val PREFERENCE = "com.android.signin"
+    private lateinit var signinViewModel: SigninViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        SharedPref.openSharedPrep(this@SigninActivity)
-        val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
-        val editor = pref.edit()
+
+        SharedPref.init(this)
 
         binding.autoSignInCheckbox.setOnClickListener {
-            if (binding.autoSignInCheckbox.isChecked) {
-                editor.putBoolean(
-                    "auto_login",
-                    true
-                )
-                editor.apply()
-            } else {
-                editor.putBoolean(
-                    "auto_login",
-                    false
-                )
-                editor.apply()
-            }
+            SharedPref.autoLogin = binding.autoSignInCheckbox.isChecked
         }
 
         binding.signInBtn.setOnClickListener {
+
+            var signinDTO = SigninDTO(binding.signInIdEditText.text.toString(),
+            binding.signInPasswordEditText.text.toString())
+
+            signinViewModel.signIn(signinDTO)
+
+
+
+
+
+
+
+
             Client.retrofitService.signIn(
                 binding.signInIdEditText.text.toString(),
                 binding.signInPasswordEditText.text.toString()
@@ -55,19 +57,10 @@ class SigninActivity : BaseActivity<ActivitySigninBinding>({ ActivitySigninBindi
                 ) {
                     when (response!!.code()) {
                         200 -> {
-                            editor.putString(
-                                "access_token",
-                                response.body()?.access_token
-                            )
-                            editor.putString(
-                                "refresh_token",
-                                response.body()?.refresh_token
-                            )
-                            editor.putString(
-                                "email",
-                                binding.signInIdEditText.text.toString()
-                            )
-                            editor.apply()
+                            SharedPref.access_token = response.body()?.access_token.toString()
+                            SharedPref.refresh_token = response.body()?.refresh_token.toString()
+                            SharedPref.email = signinDTO.email
+
                             finish()
                             startActivity(Intent(this@SigninActivity, MainActivity::class.java))
                         }
