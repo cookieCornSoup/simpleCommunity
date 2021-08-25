@@ -34,6 +34,7 @@ class SigninRepository(application: Application) : RepoRepository {
                         200 -> {
                             SharedPref.access_token = response.body()?.access_token.toString()
                             SharedPref.refresh_token = response.body()?.refresh_token.toString()
+
                             SharedPref.email = signinDTO.email
 
                             callback.onSuccess(body)

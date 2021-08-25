@@ -42,8 +42,8 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>({ ActivitySignupBindi
                                 "email",
                                 response.body()?.email
                             )
-                            val intent = Intent(this@SignupActivity, EmailCheckActivity::class.java)
-                            intent.putExtra("email",response.body()?.email.toString())
+                            val intent = Intent(this@SigninActivity, EmailCheckActivity::class.java)
+                            intent.putExtra("email", signinDTO.email)
                             startActivity(intent)
                         }
                         405 -> Toast.makeText(
