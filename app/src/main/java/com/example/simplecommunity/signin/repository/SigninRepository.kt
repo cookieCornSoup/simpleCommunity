@@ -1,9 +1,7 @@
 package com.example.simplecommunity.signin.repository
 
 import android.annotation.SuppressLint
-import android.app.Application
 import com.example.simplecommunity.base.BaseResponse
-import com.example.simplecommunity.base.RepoRepository
 import com.example.simplecommunity.model.signin.SigninCheckOkResponse
 import com.example.simplecommunity.model.signin.SigninDTO
 import com.example.simplecommunity.repository.SharedPref
@@ -12,10 +10,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SigninRepository(application: Application) : RepoRepository {
+class SigninRepository {
 
 
-    override fun signIn(
+    fun signIn(
         signinDTO: SigninDTO,
         callback: BaseResponse<SigninCheckOkResponse>,
         sharedPref: SharedPref

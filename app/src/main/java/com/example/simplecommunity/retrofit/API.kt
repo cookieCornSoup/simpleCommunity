@@ -2,6 +2,7 @@ package com.example.simplecommunity.retrofit
 
 import com.example.simplecommunity.model.*
 import com.example.simplecommunity.model.signin.SigninCheckOkResponse
+import com.example.simplecommunity.model.signup.UsersActivateResponse
 import retrofit2.Call
 import retrofit2.http.*
 import java.net.URI

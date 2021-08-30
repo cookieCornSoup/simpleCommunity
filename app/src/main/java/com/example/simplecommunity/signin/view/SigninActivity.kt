@@ -9,13 +9,7 @@ import com.example.simplecommunity.databinding.ActivitySigninBinding
 import com.example.simplecommunity.feature.MainActivity
 import com.example.simplecommunity.model.signin.SigninCheckOkResponse
 import com.example.simplecommunity.model.signin.SigninDTO
-import com.example.simplecommunity.repository.SharedPref
 import com.example.simplecommunity.signin.viewmodel.SigninViewModel
-
-// 전제가 싱글턴 패턴이 어디선가 init 되야한다
-// activity
-//application
-//userapplication
 
 class SigninActivity : BaseActivity<ActivitySigninBinding>({ ActivitySigninBinding.inflate(it) }) {
 

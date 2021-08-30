@@ -1,4 +1,4 @@
-package com.example.simplecommunity.model
+package com.example.simplecommunity.model.signup
 
 data class UsersActivateResponse(
     val email: String,

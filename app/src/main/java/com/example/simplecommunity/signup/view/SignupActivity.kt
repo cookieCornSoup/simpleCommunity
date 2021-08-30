@@ -5,67 +5,57 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.example.simplecommunity.base.BaseActivity
+import com.example.simplecommunity.base.BaseResponse
 import com.example.simplecommunity.databinding.ActivitySignupBinding
 import com.example.simplecommunity.feature.signup.EmailCheckActivity
-import com.example.simplecommunity.model.UsersActivateResponse
-import com.example.simplecommunity.repository.SharedPref
-import com.example.simplecommunity.retrofit.Client
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.simplecommunity.model.signup.SignupDTO
+import com.example.simplecommunity.model.signup.UsersActivateResponse
+import com.example.simplecommunity.signup.viewmodel.SignupViewModel
 
 class SignupActivity : BaseActivity<ActivitySignupBinding>({ ActivitySignupBinding.inflate(it) }) {
 
-    val PREFERENCE = "com.android.signin"
+    private lateinit var signupViewModel: SignupViewModel
 
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding.signUpBtn.setOnClickListener {
-            Client.retrofitService.signUp(
-                binding.signUpIdEditText.toString(),
-                binding.signUpNikenameEditText.toString(),
-                binding.signUpPasswordEditText.toString()
-            ).enqueue(object : Callback<UsersActivateResponse> {
-                @SuppressLint("ShowToast")
-                override fun onResponse(
-                    call: Call<UsersActivateResponse>?,
-                    response: Response<UsersActivateResponse>?
-                ) {
-                    when (response!!.code()) {
-                        200 -> {
-                            editor.putString(
-                                "email",
-                                response.body()?.email
-                            )
-                            val intent = Intent(this@SigninActivity, EmailCheckActivity::class.java)
-                            intent.putExtra("email", signinDTO.email)
-                            startActivity(intent)
-                        }
-                        405 -> Toast.makeText(
-                            this@SignupActivity,
-                            "로그인 실패 : 아이디나 비번이 올바르지 않습니다",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        500 -> Toast.makeText(
-                            this@SignupActivity,
-                            "로그인 실패 : 서버 오류",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        401 -> Toast.makeText(
-                            this@SignupActivity,
-                            "잘못된 인증자격(리프레시 토큰으로 바꾸기)",
-                            Toast.LENGTH_LONG
-                        )
-                    }
+            val signupDTO = SignupDTO(
+                binding.signUpIdEditText.text.toString(),
+                binding.signUpNikenameEditText.text.toString(),
+                binding.signUpPasswordEditText.text.toString()
+            )
+            signupViewModel.signup(signupDTO, object : BaseResponse<UsersActivateResponse> {
+                override fun onSuccess(data: UsersActivateResponse) {
+                    val intent = Intent(this@SignupActivity, EmailCheckActivity::class.java)
+                    intent.putExtra("email", signupDTO.email)
+                    startActivity(intent)
                 }
 
-                override fun onFailure(call: Call<UsersActivateResponse>, t: Throwable) {
+                override fun onFail(description: String) {
+                    Toast.makeText(this@SignupActivity, description, Toast.LENGTH_LONG).show()
+                }
 
+                override fun onFail(description: String, newAuthentication: Boolean) {
+                    Toast.makeText(this@SignupActivity, description, Toast.LENGTH_LONG).show()
+                    val intent = Intent(this@SignupActivity, SignupActivity::class.java)
+                    startActivity(intent)
+                }
+
+                override fun onError(throwable: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onLoading() {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onLoaded() {
+                    TODO("Not yet implemented")
                 }
             })
-
         }
     }
 }
+

@@ -10,7 +10,7 @@ import com.example.simplecommunity.signin.repository.SigninRepository
 
 
 class SigninViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = SigninRepository(application)
+    private val repository = SigninRepository()
     private val sharedpref = SharedPref(application)
 
     fun signIn(signinDTO: SigninDTO, callback: BaseResponse<SigninCheckOkResponse>) {

@@ -7,7 +7,7 @@ import com.example.simplecommunity.databinding.ActivityEmailCheckBinding
 
 class EmailCheckActivity : BaseActivity<ActivityEmailCheckBinding>({ ActivityEmailCheckBinding.inflate(it) }){
 
-    val PREFERENCE = "com.android.signin"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
