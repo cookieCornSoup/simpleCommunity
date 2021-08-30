@@ -1,4 +1,4 @@
-package com.example.simplecommunity.model
+package com.example.simplecommunity.model.signin
 
 data class SigninDTO(
     var email: String,

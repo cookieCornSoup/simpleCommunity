@@ -1,35 +1,33 @@
-package com.example.simplecommunity.feature.signup
+package com.example.simplecommunity.signin.view
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import com.example.simplecommunity.base.BaseActivity
 import com.example.simplecommunity.base.BaseResponse
 
 import com.example.simplecommunity.databinding.ActivitySigninBinding
 import com.example.simplecommunity.feature.MainActivity
-import com.example.simplecommunity.model.SigninCheckOkResponse
-import com.example.simplecommunity.model.SigninDTO
+import com.example.simplecommunity.model.signin.SigninCheckOkResponse
+import com.example.simplecommunity.model.signin.SigninDTO
 import com.example.simplecommunity.repository.SharedPref
-import com.example.simplecommunity.retrofit.Client
 import com.example.simplecommunity.signin.viewmodel.SigninViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
+// 전제가 싱글턴 패턴이 어디선가 init 되야한다
+// activity
+//application
+//userapplication
 
 class SigninActivity : BaseActivity<ActivitySigninBinding>({ ActivitySigninBinding.inflate(it) }) {
 
     private lateinit var signinViewModel: SigninViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        SharedPref.init(this)
 
         binding.autoSignInCheckbox.setOnClickListener {
-            SharedPref.autoLogin = binding.autoSignInCheckbox.isChecked
+            signinViewModel.autoLogin(binding.autoSignInCheckbox.isChecked)
         }
 
         binding.signInBtn.setOnClickListener {
@@ -46,7 +44,7 @@ class SigninActivity : BaseActivity<ActivitySigninBinding>({ ActivitySigninBindi
                 }
 
                 override fun onFail(description: String) {
-                    TODO("Not yet implemented")
+
                 }
 
                 override fun onError(throwable: Throwable) {

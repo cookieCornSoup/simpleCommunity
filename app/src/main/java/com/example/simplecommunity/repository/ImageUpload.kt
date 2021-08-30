@@ -1,15 +1,5 @@
 package com.example.simplecommunity.repository
 
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.widget.Toast
-import com.example.simplecommunity.feature.MainActivity
-import com.example.simplecommunity.model.SigninCheckOkResponse
-import com.example.simplecommunity.retrofit.Client
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
 class ImageUpload {
 
 //    fun getImageUri() {

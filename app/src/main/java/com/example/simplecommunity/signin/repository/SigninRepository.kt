@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Application
 import com.example.simplecommunity.base.BaseResponse
 import com.example.simplecommunity.base.RepoRepository
-import com.example.simplecommunity.model.SigninCheckOkResponse
-import com.example.simplecommunity.model.SigninDTO
+import com.example.simplecommunity.model.signin.SigninCheckOkResponse
+import com.example.simplecommunity.model.signin.SigninDTO
 import com.example.simplecommunity.repository.SharedPref
 import com.example.simplecommunity.retrofit.Client
 import retrofit2.Call
@@ -17,7 +17,8 @@ class SigninRepository(application: Application) : RepoRepository {
 
     override fun signIn(
         signinDTO: SigninDTO,
-        callback: BaseResponse<SigninCheckOkResponse>
+        callback: BaseResponse<SigninCheckOkResponse>,
+        sharedPref: SharedPref
     ) {
         Client.retrofitService.signIn(
             signinDTO.email,
@@ -32,10 +33,10 @@ class SigninRepository(application: Application) : RepoRepository {
                 if (response!!.isSuccessful && null != body) {
                     when (response.code()) {
                         200 -> {
-                            SharedPref.access_token = response.body()?.access_token.toString()
-                            SharedPref.refresh_token = response.body()?.refresh_token.toString()
+                            sharedPref.access_token = response.body()?.access_token.toString()
+                            sharedPref.refresh_token = response.body()?.refresh_token.toString()
 
-                            SharedPref.email = signinDTO.email
+                            sharedPref.email = signinDTO.email
 
                             callback.onSuccess(body)
                         }

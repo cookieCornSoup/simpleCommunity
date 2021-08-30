@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.simplecommunity.feature.signup.EmailCheckActivity
-import com.example.simplecommunity.feature.signup.SigninActivity
+import com.example.simplecommunity.signin.view.SigninActivity
 import com.example.simplecommunity.model.UsersRetrieveResponse
 import com.example.simplecommunity.repository.SharedPref
 import com.example.simplecommunity.retrofit.Client

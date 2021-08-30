@@ -1,26 +1,25 @@
 package com.example.simplecommunity.repository
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 
-object SharedPref {
+private const val PREF_AUTOLOGIN = "auto_login"
+private const val PREF_TOKEN = "access_token"
+private const val PREF_REFRESH_TOKEN = "refresh_token"
+private const val PREF_EMAIL = "email"
 
-    private const val PREF_AUTOLOGIN = "auto_login"
-    private const val PREF_TOKEN = "access_token"
-    private const val PREF_REFRESH_TOKEN = "refresh_token"
-    private const val PREF_EMAIL = "email"
+private const val PREF_NAME = "com.android.signin"
+private const val PREF_MODE = Context.MODE_PRIVATE
+
+class SharedPref(context: Context) {
 
 
-    private const val PREF_NAME  = "com.android.signin"
-    private const val PREF_MODE = Context.MODE_PRIVATE
-    private lateinit var sharedPreferences: SharedPreferences
+    private val sharedPreferences =
+        context.getSharedPreferences(PREF_NAME, PREF_MODE)
 
-    fun init(context: Context){
-        sharedPreferences = context.getSharedPreferences(PREF_NAME, PREF_MODE)
-    }
-
-    private inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor)->Unit) {
+    @SuppressLint("CommitPrefEdits")
+    private inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {
         val editor = edit()
         operation(edit())
         edit().apply()
@@ -40,13 +39,15 @@ object SharedPref {
 
     var autoLogin: Boolean
         get() = sharedPreferences.getBoolean(PREF_AUTOLOGIN, false)
-        set(value) = sharedPreferences.edit{
+        set(value) = sharedPreferences.edit {
             it.putBoolean(PREF_AUTOLOGIN, value)
         }
 
     var email: String
         get() = sharedPreferences.getString(PREF_EMAIL, "").toString()
-        set(value) = sharedPreferences.edit{
+        set(value) = sharedPreferences.edit {
             it.putString(PREF_EMAIL, value)
         }
 }
+
+

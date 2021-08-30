@@ -1,4 +1,4 @@
-package com.example.simplecommunity.feature.signup
+package com.example.simplecommunity.signup.view
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.simplecommunity.base.BaseActivity
 import com.example.simplecommunity.databinding.ActivitySignupBinding
+import com.example.simplecommunity.feature.signup.EmailCheckActivity
 import com.example.simplecommunity.model.UsersActivateResponse
 import com.example.simplecommunity.repository.SharedPref
 import com.example.simplecommunity.retrofit.Client
@@ -20,10 +21,6 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>({ ActivitySignupBindi
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        SharedPref.openSharedPrep(this@SignupActivity)
-        val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
-        val editor = pref.edit()
 
         binding.signUpBtn.setOnClickListener {
             Client.retrofitService.signUp(

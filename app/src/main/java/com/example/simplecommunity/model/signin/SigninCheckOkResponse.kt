@@ -1,4 +1,4 @@
-package com.example.simplecommunity.model
+package com.example.simplecommunity.model.signin
 
 data class SigninCheckOkResponse(
     val access_token: String,
