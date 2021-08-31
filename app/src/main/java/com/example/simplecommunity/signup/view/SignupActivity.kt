@@ -3,6 +3,7 @@ package com.example.simplecommunity.signup.view
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.example.simplecommunity.base.BaseActivity
 import com.example.simplecommunity.base.BaseResponse
@@ -11,10 +12,13 @@ import com.example.simplecommunity.feature.signup.EmailCheckActivity
 import com.example.simplecommunity.model.signup.SignupDTO
 import com.example.simplecommunity.model.signup.UsersActivateResponse
 import com.example.simplecommunity.signup.viewmodel.SignupViewModel
+import com.example.simplecommunity.utils.InputUtility
 
 class SignupActivity : BaseActivity<ActivitySignupBinding>({ ActivitySignupBinding.inflate(it) }) {
 
     private lateinit var signupViewModel: SignupViewModel
+    private lateinit var inputUtility: InputUtility
+
 
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +34,7 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>({ ActivitySignupBindi
                 override fun onSuccess(data: UsersActivateResponse) {
                     val intent = Intent(this@SignupActivity, EmailCheckActivity::class.java)
                     intent.putExtra("email", signupDTO.email)
+
                     startActivity(intent)
                 }
 
@@ -44,11 +49,13 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>({ ActivitySignupBindi
                 }
 
                 override fun onError(throwable: Throwable) {
-                    TODO("Not yet implemented")
+
                 }
 
                 override fun onLoading() {
-                    TODO("Not yet implemented")
+                    inputUtility.hideKeyborad(this@SignupActivity)
+
+
                 }
 
                 override fun onLoaded() {
