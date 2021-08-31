@@ -19,6 +19,4 @@ class SignupViewModel(application: Application) : AndroidViewModel(application) 
     fun signup(signupDTO: SignupDTO, callback: BaseResponse<UsersActivateResponse>){
         repository.signup(signupDTO, callback, sharedpref)
     }
-
-
 }

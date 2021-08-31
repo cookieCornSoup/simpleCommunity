@@ -41,6 +41,10 @@ class SigninActivity : BaseActivity<ActivitySigninBinding>({ ActivitySigninBindi
 
                 }
 
+                override fun onFail(description: String, newAuthentication: Boolean) {
+                    TODO("Not yet implemented")
+                }
+
                 override fun onError(throwable: Throwable) {
                     TODO("Not yet implemented")
                 }
@@ -52,6 +56,8 @@ class SigninActivity : BaseActivity<ActivitySigninBinding>({ ActivitySigninBindi
                 override fun onLoaded() {
                     TODO("Not yet implemented")
                 }
+
+
             })
         }
     }

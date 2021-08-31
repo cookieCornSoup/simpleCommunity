@@ -11,5 +11,4 @@ class InputUtility(val context: Context) {
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-
 }
