@@ -3,13 +3,10 @@ package com.example.simplecommunity.signup.view
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
 import android.widget.Toast
 import com.example.simplecommunity.base.BaseActivity
 import com.example.simplecommunity.base.BaseResponse
 import com.example.simplecommunity.databinding.ActivitySignupBinding
-import com.example.simplecommunity.feature.signup.EmailCheckActivity
 import com.example.simplecommunity.model.signup.SignupDTO
 import com.example.simplecommunity.model.signup.UsersActivateResponse
 import com.example.simplecommunity.signup.viewmodel.SignupViewModel
@@ -55,8 +52,6 @@ class SignupActivity : BaseActivity<ActivitySignupBinding>({ ActivitySignupBindi
                 }
 
                 override fun onLoading() {
-
-                    inputUtility.hideKeyborad()
 
 
                 }

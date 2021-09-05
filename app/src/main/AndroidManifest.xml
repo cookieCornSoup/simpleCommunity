@@ -33,7 +33,7 @@
             tools:ignore="Instantiatable" />
         <activity android:name="com.example.simplecommunity.signin.view.SigninActivity"/>
         <activity android:name="com.example.simplecommunity.feature.PostWriting"/>
-        <activity android:name="com.example.simplecommunity.feature.signup.EmailCheckActivity"/>
+        <activity android:name="com.example.simplecommunity.signup.view.EmailCheckActivity"/>
 
     </application>
 
