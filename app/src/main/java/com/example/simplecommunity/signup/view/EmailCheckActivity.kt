@@ -1,12 +1,13 @@
 package com.example.simplecommunity.signup.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.example.simplecommunity.base.BaseActivity
 import com.example.simplecommunity.base.BaseResponse
 import com.example.simplecommunity.databinding.ActivityEmailCheckBinding
+import com.example.simplecommunity.feature.MainActivity
 import com.example.simplecommunity.model.signup.EmailCheckDTO
-import com.example.simplecommunity.model.signup.EmailCheckResponse
 import com.example.simplecommunity.signup.viewmodel.EmailCheckViewModel
 
 class EmailCheckActivity : BaseActivity<ActivityEmailCheckBinding>({ ActivityEmailCheckBinding.inflate(it) }){
@@ -22,16 +23,23 @@ class EmailCheckActivity : BaseActivity<ActivityEmailCheckBinding>({ ActivityEma
             Toast.LENGTH_LONG
         ).show()
 
-
         binding.emailCheckBtn.setOnClickListener{
 
             val emailCheckDTO = EmailCheckDTO(
                 binding.signInIdEditText.text.toString(),
                 intent.getParcelableArrayExtra("email").toString()
             )
-            emailCheckViewModel.emailCheck(emailCheckDTO, object : BaseResponse<EmailCheckResponse>{
-                override fun onSuccess(data: EmailCheckResponse) {
-                    TODO("Not yet implemented")
+            emailCheckViewModel.emailCheck(emailCheckDTO, object : BaseResponse<String>{
+
+                override fun onSuccess(data: String) {
+                    Toast.makeText(
+                        this@EmailCheckActivity,
+                        data,
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    val intent = Intent(this@EmailCheckActivity, MainActivity::class.java)
+                    startActivity(intent)
                 }
 
                 override fun onFail(description: String) {
@@ -53,6 +61,8 @@ class EmailCheckActivity : BaseActivity<ActivityEmailCheckBinding>({ ActivityEma
                 override fun onLoaded() {
                     TODO("Not yet implemented")
                 }
+
+
 
             })
         }
